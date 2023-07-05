@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+import "./App.css";
+
+export default function App() {
+  const [step, setStep] = useState(1);
+  const [count, setCount] = useState(1);
+
+  const date = new Date("july 5 2023");
+  date.setDate(date.getDate()+count)
+
+  function increaseStep() {
+    setStep((s) => s + 1);
+    console.log(step);
+  }
+
+  function dimStep() {
+    setStep((s) => s - 1);
+    console.log(step);
+  }
+
+  function increaseCount() {
+    setCount((s) => s + step);
+    console.log(count);
+  }
+
+  function dimCount() {
+    setCount((s) => s - step);
+    console.log(count);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="step">
+        <button onClick={() => dimStep()}>-</button>
+        <span>Step: {step}</span>
+        <button onClick={() => increaseStep()}>+</button>
+      </div>
+      <div className="count">
+        <button onClick={() => dimCount()}>-</button>
+        <span>Count: {count}</span>
+        <button onClick={() => increaseCount()}>+</button>
+      </div>
+      <p>{date.toDateString()}</p>
     </div>
   );
 }
-
-export default App;
