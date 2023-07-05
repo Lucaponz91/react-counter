@@ -31,12 +31,14 @@ export default function App() {
 
   let text = "";
 
-  if (count < 0 ) {
-    text = `${count} days ago was `;
+  if (count < -1 ) {
+    text = `${Math.abs(count)} days ago was `;
   } else if ( count > 0) {
     text = `in ${count} days will be `;
-  } else{
+  } else if (count === 0) { 
     text = `today is `;
+  } else if (count === -1) {
+    text = `yesterday was `;
   }
 
 
