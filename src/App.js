@@ -27,7 +27,19 @@ export default function App() {
   function dimCount() {
     setCount((s) => s - step);
     console.log(count);
+  };
+
+  let text = "";
+
+  if (count < 0 ) {
+    text = `${count} days ago was `;
+  } else if ( count > 0) {
+    text = `in ${count} days will be `;
+  } else{
+    text = `today is `;
   }
+
+
 
   return (
     <div className="App">
@@ -41,7 +53,7 @@ export default function App() {
         <span>Count: {count}</span>
         <button onClick={() => increaseCount()}>+</button>
       </div>
-      <p>{date.toDateString()}</p>
+      <p>{text} {date.toDateString()}</p>
     </div>
   );
 }
